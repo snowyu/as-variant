@@ -21,6 +21,7 @@
     "test:ci": "asp --config as-pect.config.mjs --summary --no-logo"
   },
   "devDependencies": {
+    "@as-pect/assembly": "^8.1.0",
     "@as-pect/cli": "^8.0.1",
     "assemblyscript": "^0.27.0"
   },
