@@ -2,6 +2,17 @@ import { Variant } from "../index";
 
 class Foo {}
 
+class Foo1 {
+  x: i32;
+  y: i32;
+  z: i32;
+  constructor(x: i32, y: i32, z: i32) {
+    this.x = x;
+    this.y = y;
+    this.z = z;
+  }
+}
+
 describe("Variant/from, Variant/is, Variant/get", () => {
   test("should init as i32 type", () => {
     let val = Variant.from(123);
@@ -53,6 +64,14 @@ describe("Variant/from, Variant/is, Variant/get", () => {
     expect(val.get<i32[]>()[0]).toBe(1);
     expect(val.get<i32[]>()[1]).toBe(2);
     expect(val.get<i32[]>()[2]).toBe(3);
+  });
+
+  test("should init as struct type", () => {
+    const foo = new Foo1(1, 2, 3);
+    let val = Variant.from(foo);
+    expect(val.is<Foo1>()).toBe(true);
+    expect(val.is<Int32Array>()).toBe(false);
+    expect(val.get<Foo1>()).toStrictEqual(foo);
   });
 
   test("should init as variant type", () => {
